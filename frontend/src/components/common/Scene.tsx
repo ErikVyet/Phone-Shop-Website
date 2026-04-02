@@ -5,26 +5,28 @@ import { Color, DirectionalLight, DirectionalLightHelper, Mesh, Vector3 } from "
 import Model, { type ModelProps } from "./Model";
 
 type SceneProps = {
-    model: ModelProps | undefined,
+    model?: ModelProps | undefined,
     light?: number,
     gridOn?: boolean,
     cameraOn?: boolean,
     axesOn?: boolean
+    orbitControls?: boolean,
     isRotateX?: boolean,
     isRotateY?: boolean,
     isRotateZ?: boolean
 };
 
-function Scene({ model = { modelId: 2, modelName: 'iPhone 12 Pro', modelUrl: '/src/assets/models/iphone_12_pro.glb', modelScale: 0.03 }, light = 1, gridOn = true, cameraOn = true, axesOn = true, isRotateX = false, isRotateY = true, isRotateZ = false }: SceneProps) {
+function Scene({ model = { modelId: 2, modelName: 'iPhone 12 Pro', modelUrl: '/src/assets/models/iphone_12_pro.glb', modelScale: 0.03 }, light = 1, gridOn = true, cameraOn = true, axesOn = true, orbitControls = false, isRotateX = false, isRotateY = true, isRotateZ = false }: SceneProps) {
     const objectMesh = useRef<Mesh>(null);
     const [rotateValue, setRotateValue] = useState(0.005);
     const handleModelRotation = (_event: PointerEvent) => setRotateValue(0.005);
     const handleCancelModelRotation = (_event: PointerEvent) => setRotateValue(0);
-    
+
     const dirLight = useRef<DirectionalLight>(null!);
     useHelper(dirLight, DirectionalLightHelper, 1, Color.NAMES.white);
 
     const { camera } = useThree();
+    camera.position.set(0, 1.4, 3);
     useFrame(() => {
         const v3 = new Vector3();
         camera.getWorldPosition(v3);
@@ -44,12 +46,9 @@ function Scene({ model = { modelId: 2, modelName: 'iPhone 12 Pro', modelUrl: '/s
             {axesOn && (<axesHelper args={[10]} />)}
             {gridOn && (<gridHelper args={[10, 10]} />)}
             {cameraOn && (<cameraHelper args={[camera]} />)}
-            <OrbitControls minDistance={4} maxDistance={10} />
+            {orbitControls && (<OrbitControls />)}
             <mesh ref={objectMesh} onPointerDown={handleCancelModelRotation} onPointerUp={handleModelRotation}>
-                {/* <boxGeometry args={[2, 2, 2]}/> */}
-                {/* <meshStandardMaterial color={Color.NAMES.deepskyblue} /> */}
                 <Model modelScale={model.modelScale} modelUrl={model.modelUrl} />
-                
             </mesh>
         </>
     )

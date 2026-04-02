@@ -2,9 +2,9 @@ import { Box, Button, Checkbox, Collapse, IconButton, List, ListItem, MenuItem, 
 import { type SelectChangeEvent } from "@mui/material/Select";
 import { ArrowDropUpOutlined, ArrowDropDownOutlined } from "@mui/icons-material";
 import { Canvas } from "@react-three/fiber";
-import Scene from "../components/Scene";
+import Scene from "../components/common/Scene";
 import { useState, type ChangeEvent } from "react";
-import { type ModelProps } from "../components/Model";
+import { type ModelProps } from "../components/common/Model";
 
 function Playground() {
     const [isCustomMenuCollapse, setAnchorElCustomMenu] = useState(true);

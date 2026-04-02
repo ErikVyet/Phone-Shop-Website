@@ -1,5 +1,5 @@
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Checkbox, Collapse, Container, List, ListItem, Stack, Typography } from "@mui/material";
-import Filterbar from "../components/Filterbar";
+import Filterbar from "../components/common/Filterbar";
 import { ArrowDropDown, ArrowDropUp } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 
@@ -11,14 +11,15 @@ function Product() {
 
     useEffect(() => {
 
+        return () => { };
     }, []);
 
     return (
         <Container className="h-121! mt-4 mb-4 p-0!">
             <Stack direction={"row"} width={"100%"} height={"100%"} gap={2}>
-                <Stack className="rounded-sm h-fit" flex={3} alignItems={"center"} maxHeight={"100%"} bgcolor={"white"} overflow={"auto"} sx={{scrollbarWidth: "thin"}}>
+                <Stack className="rounded-sm h-fit" flex={3} alignItems={"center"} maxHeight={"100%"} bgcolor={"white"} overflow={"auto"} sx={{ scrollbarWidth: "thin" }}>
                     <Box className="w-full mt-1 pl-3 pr-1">
-                        <Filterbar/>
+                        <Filterbar />
                     </Box>
                     <Box className="w-11/12 mt-2 mb-2">
 
@@ -26,8 +27,8 @@ function Product() {
                     <Box className="w-full">
                         <Button fullWidth className="text-zinc-700! hover:bg-zinc-100!" onClick={() => setIsBrandMenuExpand(!isBrandMenuExpand)}>
                             <Typography>Brand</Typography>
-                            {isBrandMenuExpand && (<ArrowDropUp/>)}
-                            {!isBrandMenuExpand && (<ArrowDropDown/>)}
+                            {isBrandMenuExpand && (<ArrowDropUp />)}
+                            {!isBrandMenuExpand && (<ArrowDropDown />)}
                         </Button>
                         <Collapse in={isBrandMenuExpand}>
                             <List className="text-blue-400">
@@ -59,8 +60,8 @@ function Product() {
                         </Collapse>
                         <Button fullWidth className="text-zinc-700! hover:bg-zinc-100!" onClick={() => setIsScreenMenuExpand(!isScreenMenuExpand)}>
                             <Typography>Screen</Typography>
-                            {isScreenMenuExpand && (<ArrowDropUp/>)}
-                            {!isScreenMenuExpand && (<ArrowDropDown/>)}
+                            {isScreenMenuExpand && (<ArrowDropUp />)}
+                            {!isScreenMenuExpand && (<ArrowDropDown />)}
                         </Button>
                         <Collapse in={isScreenMenuExpand}>
                             <List className="text-blue-400">
@@ -86,8 +87,8 @@ function Product() {
                         </Collapse>
                         <Button fullWidth className="text-zinc-700! hover:bg-zinc-100!" onClick={() => setIsRamMenuExpand(!isRamMenuExpand)}>
                             <Typography>Ram</Typography>
-                            {isRamMenuExpand && (<ArrowDropUp/>)}
-                            {!isRamMenuExpand && (<ArrowDropDown/>)}
+                            {isRamMenuExpand && (<ArrowDropUp />)}
+                            {!isRamMenuExpand && (<ArrowDropDown />)}
                         </Button>
                         <Collapse in={isRamMenuExpand}>
                             <List className="text-blue-400">
@@ -119,8 +120,8 @@ function Product() {
                         </Collapse>
                         <Button fullWidth className="text-zinc-700! hover:bg-zinc-100!" onClick={() => setIsStorageMenuExpand(!isStorageMenuExpand)}>
                             <Typography>Storage</Typography>
-                            {isStorageMenuExpand && (<ArrowDropUp/>)}
-                            {!isStorageMenuExpand && (<ArrowDropDown/>)}
+                            {isStorageMenuExpand && (<ArrowDropUp />)}
+                            {!isStorageMenuExpand && (<ArrowDropDown />)}
                         </Button>
                         <Collapse in={isStorageMenuExpand}>
                             <List className="text-blue-400">
@@ -152,10 +153,10 @@ function Product() {
                         </Collapse>
                     </Box>
                 </Stack>
-                <Box className="rounded-sm" bgcolor={"white"} flex={9} display={"flex"} flexWrap={"wrap"} maxHeight={"100%"} overflow={"auto"} sx={{scrollbarWidth: "thin"}}>
+                <Box className="rounded-sm" bgcolor={"white"} flex={9} display={"flex"} flexWrap={"wrap"} maxHeight={"100%"} overflow={"auto"} sx={{ scrollbarWidth: "thin" }}>
                     <Box className="flex-1/3 grow-0 shrink-0 h-5/6 p-2">
                         <Card className="h-full shadow-md! shadow-zinc-400">
-                            <CardMedia className="object-contain w-fit! h-[55%] justify-self-center" component={"img"} image="/src/assets/images/hero.png"/>
+                            <CardMedia className="object-contain w-fit! h-[55%] justify-self-center" component={"img"} image="/src/assets/images/hero.png" />
                             <CardContent className="h-[30%] place-content-center justify-items-center">
                                 <Typography>Name</Typography>
                                 <Typography fontWeight={"bold"}>Brand</Typography>

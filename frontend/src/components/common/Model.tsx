@@ -4,7 +4,7 @@ type ModelProps = {
     modelId?: number,
     modelName?: string,
     modelUrl: string,
-    modelScale: number
+    modelScale?: number
 }
 
 function Model({ modelScale = 0.03, modelUrl }: ModelProps) {
