@@ -1,10 +1,10 @@
-import { Box } from "@mui/material";
+import { motion } from "motion/react";
 
 function PhotoSection() {
     return (
-        <Box className="w-full h-screen">
-
-        </Box>
+        <motion.div className="w-full h-screen">
+            
+        </motion.div>
     )
 }
 

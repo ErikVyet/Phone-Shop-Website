@@ -1,7 +1,7 @@
 import { IconButton, List, ListItem } from "@mui/material";
 
 type HorizontalIconListProps = {
-    items?: { size: number, src: string, invert: boolean, link: string }[]
+    items?: { src: string, invert: boolean, link: string }[]
 }
 
 function HorizontalIconList({ items = [] }: HorizontalIconListProps) {
@@ -10,7 +10,7 @@ function HorizontalIconList({ items = [] }: HorizontalIconListProps) {
             {items.map((item, index) =>
                 <ListItem key={index} className="place-content-center!">
                     <IconButton href={item.link} disableRipple>
-                        <img draggable={false} className={`object-contain size-${item.size} ${item.invert ? "invert-100" : "" }`} src={item.src} />
+                        <img draggable={false} className={`object-contain size-8 ${item.invert ? "invert-100" : "" }`} src={item.src} />
                     </IconButton>
                 </ListItem>
             )}

@@ -2,7 +2,7 @@ import { Box, Button, Checkbox, Collapse, IconButton, List, ListItem, MenuItem, 
 import { type SelectChangeEvent } from "@mui/material/Select";
 import { ArrowDropUpOutlined, ArrowDropDownOutlined } from "@mui/icons-material";
 import { Canvas } from "@react-three/fiber";
-import Scene from "../components/common/Scene";
+import ModelScene from "../components/common/ModelScene";
 import { useState, type ChangeEvent } from "react";
 import { type ModelProps } from "../components/common/Model";
 
@@ -40,7 +40,7 @@ function Playground() {
     return (
         <Box className="h-144">
             <Canvas className="">
-                <Scene model={phoneModels.find(phone => phone.modelId?.toString() == modelId)} light={lightValue} gridOn={isGridOn} cameraOn={isCameraOn} axesOn={isAxesOn} isRotateX={isRotateOnX} isRotateY={isRotateOnY} isRotateZ={isRotateOnZ} />
+                <ModelScene model={phoneModels.find(phone => phone.modelId?.toString() == modelId)} light={lightValue} gridOn={isGridOn} cameraOn={isCameraOn} axesOn={isAxesOn} isRotateX={isRotateOnX} isRotateY={isRotateOnY} isRotateZ={isRotateOnZ} />
             </Canvas>
             <Box className="w-1/4 max-h-10/12 overflow-y-auto absolute top-28 left-3 bg-white! rounded-sm" sx={{ scrollbarWidth: "thin" }}>
                 <IconButton className="w-full! rounded-none!" onClick={() => setAnchorElCustomMenu(!isCustomMenuCollapse)}>
