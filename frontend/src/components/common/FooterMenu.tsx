@@ -13,8 +13,8 @@ function FooterMenu({ header = "N/A", items = [] }: FooterMenuProps) {
                 <ListItem>
                     <ListItemText>{header}</ListItemText>
                 </ListItem>
-                {items.map(item =>
-                    <ListItem>
+                {items.map((item, index) =>
+                    <ListItem key={index}>
                         <Link to={item.path} className="hover:underline text-sm" draggable={false}>{item.text}</Link>
                     </ListItem>
                 )}

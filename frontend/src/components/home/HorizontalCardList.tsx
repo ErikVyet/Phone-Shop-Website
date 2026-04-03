@@ -26,8 +26,8 @@ function HorizontalCardList({ items = [] }: PhoneCards) {
     );
     return (
         <>
-            <Box className="w-full h-fit p-6">
-                <Typography className="text-zinc-100 text-4xl!" justifySelf={"center"}>Famous Brands</Typography>
+            <Box className="w-full h-fit p-6 text-center">
+                <motion.text className="text-zinc-100 text-4xl!" initial={{ y: 20, opacity: 0.3 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 1 }} viewport={{ once: true }}>Famous Brands</motion.text>
             </Box>
             <motion.div ref={container} className="w-full h-[300vh]">
                 <motion.div style={{ x }} className={`ml-[50vw] sticky top-0 w-fit h-screen flex justify-evenly items-center overflow-auto gap-20`}>

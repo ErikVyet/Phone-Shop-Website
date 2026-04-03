@@ -1,10 +1,10 @@
 import { Canvas } from "@react-three/fiber";
-import GalaxyScreen from "../components/common/GalaxyScreen";
+import InfiniteGalaxyScreen from "../components/common/InfiniteGalaxyScreen";
 import HorizontalCardList, { type PhoneCards } from "../components/home/HorizontalCardList";
 import TrustSection from "../components/home/TrustSection";
 import SloganSection from "../components/home/SloganSection";
 import InterfaceSection from "../components/home/InterfaceSection";
-import PhotoSection from "../components/home/PhotoSection";
+import ShowoffSection from "../components/home/ShowoffSection";
 
 function Home() {
     const cards: PhoneCards = {
@@ -20,11 +20,11 @@ function Home() {
     return (
         <>
             <Canvas className="w-full! h-full! fixed! top-0! -z-10! border bg-zinc-950!">
-                <GalaxyScreen />
+                <InfiniteGalaxyScreen />
             </Canvas>
             <SloganSection/>
             <TrustSection/>
-            <PhotoSection />
+            <ShowoffSection />
             <HorizontalCardList items={cards.items} />
             <InterfaceSection/>
         </>
