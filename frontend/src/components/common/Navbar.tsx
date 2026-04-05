@@ -14,26 +14,26 @@ function Navbar() {
 
     return (
         <AppBar position="static" className="w-full! h-18! justify-center place-items-center bg-transparent!">
-            <Stack direction={"row"} className="w-full h-full bg-white! flex">
+            <Stack direction={"row"} className="w-full h-full bg-linear-to-bl from-blue-500 to-blue-400 flex">
                 <img src="/src/assets/images/banner.png" className="object-contain flex-auto!" draggable={false}/>
                 <Toolbar className="flex-6! h-full! justify-evenly">
-                    <Button className="text-zinc-600!" color="inherit" href="/" draggable={false}>Home</Button>
-                    <Button className="text-zinc-600!" color="inherit" href="/product" draggable={false}>Product</Button>
-                    <Button className="text-zinc-600!" color="inherit" href="/community" draggable={false}>Community</Button>
-                    <Button className="text-zinc-600!" color="inherit" href="/about" draggable={false}>About</Button>
-                    <Button className="text-zinc-600!" color="inherit" href="/guide" draggable={false}>Guide</Button>
+                    <Button className="text-zinc-100!" color="inherit" href="/" draggable={false}>Home</Button>
+                    <Button className="text-zinc-100!" color="inherit" href="/product" draggable={false}>Product</Button>
+                    <Button className="text-zinc-100!" color="inherit" href="/community" draggable={false}>Community</Button>
+                    <Button className="text-zinc-100!" color="inherit" href="/about" draggable={false}>About</Button>
+                    <Button className="text-zinc-100!" color="inherit" href="/guide" draggable={false}>Guide</Button>
                 </Toolbar>
                 <Box className="flex-4! place-content-center justify-items-center">
                     <Searchbar />
                 </Box>
                 <Box className="flex-2 flex items-center justify-evenly">
                     <Tooltip title={"Cart"}>
-                        <IconButton className="h-fit">
+                        <IconButton className="h-fit" color="inherit">
                             <ShoppingBasket />
                         </IconButton>
                     </Tooltip>
                     <Tooltip title={"Setting"}>
-                        <IconButton className="h-fit" onClick={handleOpenPersonMenu}>
+                        <IconButton className="h-fit" color="inherit" onClick={handleOpenPersonMenu}>
                             <Person />
                         </IconButton>
                     </Tooltip>

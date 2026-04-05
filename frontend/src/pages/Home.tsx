@@ -19,7 +19,7 @@ function Home() {
 
     return (
         <>
-            <Canvas className="w-full! h-full! fixed! top-0! -z-10! border bg-zinc-950!">
+            <Canvas className="w-full! h-full! fixed! top-0! -z-10! border bg-white!">
                 <InfiniteGalaxyScreen />
             </Canvas>
             <SloganSection/>

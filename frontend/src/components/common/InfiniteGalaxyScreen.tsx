@@ -1,9 +1,9 @@
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
-import * as THREE from "three";
+import { Color, Object3D, type InstancedMesh } from "three";
 
 function InfiniteGalaxyScene() {
-    const meshRef = useRef<THREE.InstancedMesh>(null!);
+    const meshRef = useRef<InstancedMesh>(null!);
     const count = 1000;
 
     const positions = useMemo(() => {
@@ -15,18 +15,14 @@ function InfiniteGalaxyScene() {
     }, []);
 
     useFrame(() => {
-        const dummy = new THREE.Object3D();
-
+        const dummy = new Object3D();
         positions.forEach((p, i) => {
-            p.z += 0.01; // bay về phía camera
-            
-            // reset khi đi qua camera
+            p.z += 0.01;
             if (p.z > 5) {
                 p.z = -50;
                 p.x = (Math.random() - 0.5) * 20;
                 p.y = (Math.random() - 0.5) * 20;
             }
-
             dummy.position.set(p.x, p.y, p.z);
             dummy.updateMatrix();
             meshRef.current.setMatrixAt(i, dummy.matrix);
@@ -37,8 +33,8 @@ function InfiniteGalaxyScene() {
 
     return (
         <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
-            <sphereGeometry args={[0.05, 6, 6]} />
-            <meshBasicMaterial color="white" />
+            <sphereGeometry args={[0.03, 6, 6]} />
+            <meshBasicMaterial color={Color.NAMES.deepskyblue} />
         </instancedMesh>
     );
 }
