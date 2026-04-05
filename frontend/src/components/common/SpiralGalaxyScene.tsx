@@ -1,9 +1,13 @@
 import { Stars } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import { useScroll } from "motion/react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AdditiveBlending, Color, type Points } from "three";
 
 function SpiralGalaxyScene() {
+    const { scrollYProgress } = useScroll();
+    const [scrollYOffset, setScrollYOffset] = useState(scrollYProgress.get());
+
     const pointsRef = useRef<Points>(null!);
 
     const count = 5000;
@@ -51,19 +55,24 @@ function SpiralGalaxyScene() {
     }, []);
 
     useFrame(() => {
-        pointsRef.current.rotation.y += 0.001;
+        pointsRef.current.rotation.y += 0.0005;
+        setScrollYOffset(scrollYProgress.get());
     });
+
+    useEffect(() => {
+        pointsRef.current.scale.set(1 + scrollYOffset * 0.5, 1 + scrollYOffset * 0.5, 1 + scrollYOffset * 0.5);
+    }, [scrollYOffset]);
 
     return (
         <>
-            <Stars/>
+            <Stars />
             <color attach="background" args={[Color.NAMES.black]} />
             <points ref={pointsRef}>
                 <bufferGeometry>
-                    <bufferAttribute attach="attributes-position" count={count} args={[positions, 3]}/>
-                    <bufferAttribute attach="attributes-color" count={count} args={[colors, 3]}/>
+                    <bufferAttribute attach="attributes-position" count={count} args={[positions, 3]} />
+                    <bufferAttribute attach="attributes-color" count={count} args={[colors, 3]} />
                 </bufferGeometry>
-                <pointsMaterial size={0.05} vertexColors sizeAttenuation depthWrite={false} blending={AdditiveBlending}/>
+                <pointsMaterial size={0.05} vertexColors sizeAttenuation depthWrite={false} blending={AdditiveBlending} />
             </points>
         </>
     );
