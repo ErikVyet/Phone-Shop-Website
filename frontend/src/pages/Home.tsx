@@ -4,9 +4,16 @@ import HorizontalCardList, { type PhoneCards } from "../components/home/Horizont
 import TrustSection from "../components/home/TrustSection";
 import SloganSection from "../components/home/SloganSection";
 import InterfaceSection from "../components/home/InterfaceSection";
-import ShowoffSection from "../components/home/ShowoffSection";
+import InteractionSection from "../components/home/InteractionSection";
+import SpiralGalaxyScene from "../components/common/SpiralGalaxyScene";
+import { useContext } from "react";
+import { ThemeContext } from "../main";
 
 function Home() {
+    const context = useContext(ThemeContext);
+    if (!context) return null;
+    const { theme } = context;
+
     const cards: PhoneCards = {
         items: [
             { brand: "Apple", image: "/src/assets/images/iphone_17e.png", name: "iPhone 17e" },
@@ -19,12 +26,12 @@ function Home() {
 
     return (
         <>
-            <Canvas className="w-full! h-full! fixed! top-0! -z-10! border bg-white!">
-                <InfiniteGalaxyScreen />
+            <Canvas className="w-full! h-full! fixed! top-0! -z-10!" camera={{ position: [0, 4, 8], fov: 50}}>
+                {theme === "light" ? <InfiniteGalaxyScreen /> : <SpiralGalaxyScene />}
             </Canvas>
             <SloganSection/>
             <TrustSection/>
-            <ShowoffSection />
+            <InteractionSection />
             <HorizontalCardList items={cards.items} />
             <InterfaceSection/>
         </>

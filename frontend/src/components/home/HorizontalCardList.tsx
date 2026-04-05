@@ -1,7 +1,8 @@
 import { ArrowRightAlt } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
 import { motion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { ThemeContext } from "../../main";
 
 type PhoneCards = {
     items: {
@@ -12,6 +13,10 @@ type PhoneCards = {
 }
 
 function HorizontalCardList({ items = [] }: PhoneCards) {
+    const context = useContext(ThemeContext);
+    if (!context) return null;
+    const { theme } = context;
+
     const flex = 350;
     const gap = 20;
     const marginLeft = window.innerWidth / 2;
@@ -27,17 +32,17 @@ function HorizontalCardList({ items = [] }: PhoneCards) {
     return (
         <>
             <Box className="w-full h-fit p-6 text-center">
-                <motion.text className="text-4xl! bg-linear-to-r from-green-500 to-green-400 bg-clip-text text-transparent" initial={{ y: 20, opacity: 0.3 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 1 }} viewport={{ once: true }}>Famous Brands</motion.text>
+                <motion.span className={`text-4xl ${theme === "light" ? 'bg-linear-to-r from-green-500 to-green-400 bg-clip-text text-transparent' : 'text-zinc-100'}`} initial={{ y: 20, opacity: 0.3 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 1 }} viewport={{ once: true }}>Famous Brands</motion.span>
             </Box>
             <motion.div ref={container} className="w-full h-[300vh]">
                 <motion.div style={{ x }} className={`ml-[50vw] sticky top-0 w-fit h-screen flex justify-evenly items-center overflow-auto gap-20`}>
                     {items.map((item, index) =>
-                        <motion.div initial={{ scale: 0.8, opacity: 0.5 }} whileInView={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5 }} key={index} className="flex-[350px] grow-0 shrink-0 h-4/5 p-1 bg-linear-to-t from-blue-500 to-green-300 rounded-xl shadow-2xl shadow-zinc-300">
+                        <motion.div initial={{ scale: 0.8, opacity: 0.5 }} whileInView={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5 }} key={index} className={`flex-[350px] grow-0 shrink-0 h-4/5 ${theme === "light" ? 'p-1' : 'p-0'} bg-linear-to-t from-blue-500 to-green-300 rounded-xl shadow-2xl shadow-zinc-300`}>
                             <Box className="bg-white w-full h-full flex flex-col rounded-xl text-center justify-center items-center gap-2">
                                 <Typography className="text-2xl! font-semibold!" justifySelf={"center"}>{item.brand}</Typography>
                                 <img className="size-2/3 w-full object-contain justify-self-center" src={item.image} draggable={false} />
                                 <Typography className="italic" justifySelf={"center"}>{item.name}</Typography>
-                                <Button className="w-fit bg-linear-to-r from-blue-500 to-blue-300 text-zinc-100! normal-case! rounded-md!">
+                                <Button className={`w-fit ${theme === "light" ? 'bg-linear-to-r from-blue-500 to-blue-300' : 'bg-blue-500!'} text-zinc-100! normal-case! rounded-md!`}>
                                     <Typography className="text-sm!">See more</Typography>
                                     <ArrowRightAlt />
                                 </Button>

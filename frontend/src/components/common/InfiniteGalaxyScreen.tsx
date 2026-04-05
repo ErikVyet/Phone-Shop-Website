@@ -1,3 +1,4 @@
+import { Stars } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import { Color, Object3D, type InstancedMesh } from "three";
@@ -18,7 +19,7 @@ function InfiniteGalaxyScene() {
         const dummy = new Object3D();
         positions.forEach((p, i) => {
             p.z += 0.01;
-            if (p.z > 5) {
+            if (p.z > 8) {
                 p.z = -50;
                 p.x = (Math.random() - 0.5) * 20;
                 p.y = (Math.random() - 0.5) * 20;
@@ -32,10 +33,14 @@ function InfiniteGalaxyScene() {
     });
 
     return (
-        <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
-            <sphereGeometry args={[0.03, 6, 6]} />
-            <meshBasicMaterial color={Color.NAMES.deepskyblue} />
-        </instancedMesh>
+        <>
+            <color attach="background" args={[Color.NAMES.white]} />
+            <Stars speed={1.5} />
+            <instancedMesh ref={meshRef} args={[undefined, undefined, count]}>
+                <sphereGeometry args={[0.03, 6, 6]} />
+                <meshBasicMaterial color={Color.NAMES.deepskyblue} />
+            </instancedMesh>
+        </>
     );
 }
 
