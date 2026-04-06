@@ -1,13 +1,13 @@
 import { useGLTF } from "@react-three/drei";
 
-type ModelProps = {
+type PhoneModelProps = {
     modelId?: number,
     modelName?: string,
     modelUrl: string,
     modelScale?: number
 }
 
-function Model({ modelScale = 0.03, modelUrl }: ModelProps) {
+function Model({ modelScale = 0.03, modelUrl }: PhoneModelProps) {
     const model = useGLTF(modelUrl);
     return (
         <primitive object={model.scene} scale={modelScale}/>
@@ -15,4 +15,4 @@ function Model({ modelScale = 0.03, modelUrl }: ModelProps) {
 }
 
 export default Model;
-export type { ModelProps };
+export type { PhoneModelProps };

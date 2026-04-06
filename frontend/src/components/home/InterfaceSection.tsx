@@ -1,7 +1,7 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { Canvas } from "@react-three/fiber";
 import { motion } from "motion/react";
-import ModelScene from "../common/ModelScene";
+import PhoneModelScene from "../common/PhoneModelScene";
 import { ArrowRightAltOutlined } from "@mui/icons-material";
 import type { HorizontalIconListProps } from "./HorizontalIconList";
 import HorizontalIconList from "./HorizontalIconList";
@@ -34,7 +34,7 @@ function InterfaceSection() {
             <motion.div className="flex-1/2 h-full place-content-center">
                 <Box className={`w-4/5 h-4/5 ${theme === "light" ? 'p-1' : 'p-0'} bg-linear-to-r from-blue-500 to-blue-300 justify-self-center rounded-xl shadow-xl shadow-zinc-700`}>
                     <Canvas className="w-full! h-full! bg-white! rounded-xl">
-                        <ModelScene light={4} cameraOn={false} gridOn={false} axesOn={false} />
+                        <PhoneModelScene light={4} cameraOn={false} gridOn={false} axesOn={false} />
                     </Canvas>
                 </Box>
             </motion.div>

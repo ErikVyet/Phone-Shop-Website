@@ -1,7 +1,7 @@
 import { Box, Stack } from "@mui/material";
 import { Canvas } from "@react-three/fiber";
 import { motion } from "motion/react";
-import ExplodeModelScene from "../common/ExplodeModelScene";
+import ExplodePhoneScene from "../common/ExplodePhoneScene";
 import { useContext } from "react";
 import { ThemeContext } from "../../main";
 
@@ -15,7 +15,7 @@ function InteractionSection() {
             <Box height={"100%"} flex={"50%"} flexGrow={0} flexShrink={0} alignContent={"center"}>
                 <Box className={`w-5/6 h-5/6 ${theme === "light" ? 'p-1' : 'p-0'} bg-linear-to-b from-blue-500 to-green-400 rounded-xl`} justifySelf={"center"}>
                     <Canvas className="w-full! full! rounded-xl bg-white! justify-self-center!">
-                        <ExplodeModelScene />
+                        <ExplodePhoneScene />
                     </Canvas>
                 </Box>
             </Box>

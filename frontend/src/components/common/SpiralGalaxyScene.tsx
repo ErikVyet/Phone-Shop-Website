@@ -12,7 +12,7 @@ function SpiralGalaxyScene() {
 
     const count = 5000;
     const branches = 4; // số nhánh xoắn
-    const radius = 10;
+    const radius = 8;
 
     const { positions, colors } = useMemo(() => {
         const positions = new Float32Array(count * 3);
@@ -29,7 +29,7 @@ function SpiralGalaxyScene() {
 
             // góc xoắn
             const branchAngle = (i % branches) / branches * Math.PI * 2;
-            const spin = r * 1.5; // độ xoắn
+            const spin = r * 1.8; // độ xoắn
 
             const angle = branchAngle + spin;
 
@@ -74,6 +74,7 @@ function SpiralGalaxyScene() {
                 </bufferGeometry>
                 <pointsMaterial size={0.05} vertexColors sizeAttenuation depthWrite={false} blending={AdditiveBlending} />
             </points>
+            
         </>
     );
 }

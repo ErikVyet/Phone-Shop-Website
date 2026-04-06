@@ -2,9 +2,9 @@ import { Box, Button, Checkbox, Collapse, IconButton, List, ListItem, MenuItem, 
 import { type SelectChangeEvent } from "@mui/material/Select";
 import { ArrowDropUpOutlined, ArrowDropDownOutlined } from "@mui/icons-material";
 import { Canvas } from "@react-three/fiber";
-import ModelScene from "../components/common/ModelScene";
+import PhoneModelScene from "../components/common/PhoneModelScene";
 import { useState, type ChangeEvent } from "react";
-import { type ModelProps } from "../components/common/Model";
+import { type PhoneModelProps } from "../components/common/PhoneModel";
 
 function Playground() {
     const [isCustomMenuCollapse, setAnchorElCustomMenu] = useState(true);
@@ -31,7 +31,7 @@ function Playground() {
 
     };
 
-    const phoneModels: ModelProps[] = [
+    const phoneModels: PhoneModelProps[] = [
         { modelId: 1, modelName: 'iPhone 8 Plus', modelUrl: '/src/assets/models/iphone_8_plus.glb', modelScale: scaleValue * 25 },
         { modelId: 2, modelName: 'iPhone 12 Pro', modelUrl: '/src/assets/models/iphone_12_pro.glb', modelScale: scaleValue },
         { modelId: 3, modelName: 'iPhone 14 Pro', modelUrl: '/src/assets/models/iphone_14_pro.glb', modelScale: scaleValue * 850 }
@@ -40,7 +40,7 @@ function Playground() {
     return (
         <Box className="h-144">
             <Canvas className="">
-                <ModelScene model={phoneModels.find(phone => phone.modelId?.toString() == modelId)} light={lightValue} gridOn={isGridOn} cameraOn={isCameraOn} axesOn={isAxesOn} isRotateX={isRotateOnX} isRotateY={isRotateOnY} isRotateZ={isRotateOnZ} />
+                <PhoneModelScene model={phoneModels.find(phone => phone.modelId?.toString() == modelId)} light={lightValue} gridOn={isGridOn} cameraOn={isCameraOn} axesOn={isAxesOn} isRotateX={isRotateOnX} isRotateY={isRotateOnY} isRotateZ={isRotateOnZ} />
             </Canvas>
             <Box className="w-1/4 max-h-10/12 overflow-y-auto absolute top-28 left-3 bg-white! rounded-sm" sx={{ scrollbarWidth: "thin" }}>
                 <IconButton className="w-full! rounded-none!" onClick={() => setAnchorElCustomMenu(!isCustomMenuCollapse)}>

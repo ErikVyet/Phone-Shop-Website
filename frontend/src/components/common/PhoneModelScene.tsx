@@ -2,10 +2,10 @@ import { OrbitControls, useHelper } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useRef, useState } from "react";
 import { Color, DirectionalLight, DirectionalLightHelper, Mesh, Vector3 } from "three";
-import Model, { type ModelProps } from "./Model";
+import PhoneModel, { type PhoneModelProps } from "./PhoneModel";
 
-type SceneProps = {
-    model?: ModelProps | undefined,
+type PhoneSceneProps = {
+    model?: PhoneModelProps | undefined,
     light?: number,
     gridOn?: boolean,
     cameraOn?: boolean,
@@ -16,7 +16,7 @@ type SceneProps = {
     isRotateZ?: boolean
 };
 
-function Scene({ model = { modelId: 2, modelName: 'iPhone 12 Pro', modelUrl: '/src/assets/models/iphone_12_pro.glb', modelScale: 0.03 }, light = 1, gridOn = true, cameraOn = true, axesOn = true, orbitControls = false, isRotateX = false, isRotateY = true, isRotateZ = false }: SceneProps) {
+function PhoneModelScene({ model = { modelId: 2, modelName: 'iPhone 12 Pro', modelUrl: '/src/assets/models/iphone_12_pro.glb', modelScale: 0.03 }, light = 1, gridOn = true, cameraOn = true, axesOn = true, orbitControls = false, isRotateX = false, isRotateY = true, isRotateZ = false }: PhoneSceneProps) {
     const objectMesh = useRef<Mesh>(null);
     const [rotateValue, setRotateValue] = useState(0.005);
     const handleModelRotation = (_event: PointerEvent) => setRotateValue(0.005);
@@ -48,10 +48,10 @@ function Scene({ model = { modelId: 2, modelName: 'iPhone 12 Pro', modelUrl: '/s
             {cameraOn && (<cameraHelper args={[camera]} />)}
             {orbitControls && (<OrbitControls />)}
             <mesh ref={objectMesh} onPointerDown={handleCancelModelRotation} onPointerUp={handleModelRotation}>
-                <Model modelScale={model.modelScale} modelUrl={model.modelUrl} />
+                <PhoneModel modelScale={model.modelScale} modelUrl={model.modelUrl} />
             </mesh>
         </>
     )
 }
 
-export default Scene;
+export default PhoneModelScene;
