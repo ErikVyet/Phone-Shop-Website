@@ -1,15 +1,15 @@
 package com.source.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.source.repositories.ProductRepository;
-
-import com.source.models.Product;
-import java.util.List;
+import com.source.model.Product;
+import com.source.repository.ProductRepository;
 
 @RestController
 @RequestMapping("/api")

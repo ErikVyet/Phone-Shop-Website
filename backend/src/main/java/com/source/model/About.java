@@ -1,6 +1,11 @@
-package com.source.models;
+package com.source.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "About")
@@ -10,16 +15,23 @@ public class About {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(columnDefinition = "varchar(255)")
+    private String section;
+
+    @Column(columnDefinition = "varchar(255)")
     private String title;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "text")
     private String content;
 
+    @Column(columnDefinition = "varchar(255)")
     private String image;
 
-    // getter setter
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
+
+    public String getSection() { return section; }
+    public void setSection(String section) { this.section = section; }
 
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
