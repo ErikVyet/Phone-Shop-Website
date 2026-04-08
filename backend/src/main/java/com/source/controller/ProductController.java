@@ -1,27 +1,41 @@
 package com.source.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.source.dto.ProductDTO;
 import com.source.model.Product;
-import com.source.repository.ProductRepository;
+import com.source.service.ProductService;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/product")
 @CrossOrigin(origins = "http://localhost:5175") 
 public class ProductController {
 
-    @Autowired
-    private ProductRepository productRepository;
+   protected final ProductService productService;
 
-    @GetMapping("/product")
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public ProductController(ProductService productService) {
+        this.productService = productService;
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<ProductDTO>> getAllProduct() {
+        List<ProductDTO> list = new ArrayList<>();
+        try {
+            list.addAll(productService.getAll());
+        }
+        catch(Exception exception) {
+            System.out.println(exception.getMessage());
+            return ResponseEntity.internalServerError().build();
+        }
+        return ResponseEntity.ok(list);
     }
    
 }
