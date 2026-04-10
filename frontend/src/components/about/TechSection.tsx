@@ -1,32 +1,56 @@
 import { DeveloperMode } from "@mui/icons-material";
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Container, Grid, Stack, Typography } from "@mui/material";
+import { useContext } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
+import type { Section } from "../../interfaces/Section";
+import { Canvas } from "@react-three/fiber";
+import PhoneModelScene from "../common/PhoneModelScene";
 
-function TechSection() {
+type TechSectionProps = {
+    content?: Section;
+    ref?: React.Ref<HTMLDivElement>;
+}
+
+function TechSection({ ref, content }: TechSectionProps) {
+    const context = useContext(ThemeContext);
+    if (!context) return null;
+    const { theme } = context;
+
+    const techs = [
+        { label: "React", image: "/src/assets/images/react.svg" },
+        { label: "Tailwind CSS", image: "/src/assets/images/tailwind.svg" },
+        { label: "Material UI", image: "/src/assets/images/mui.png" },
+        { label: "Framer Motion", image: "/src/assets/images/motion.svg" },
+        { label: "R3F", image: "/src/assets/images/three.png" },
+    ]
+
     return (
-        <Box className="py-20 bg-white">
-            <Container maxWidth="lg">
-                <Box className="flex flex-col md:flex-row gap-12 items-center">
-                    <Box className="flex-1">
-                        <Typography variant="h4" className="font-bold mb-6 italic">Engineered for Performance.</Typography>
-                        <Typography className="text-slate-600 mb-6">
-                            We didn’t just build a website; we built a high-performance application.
-                            Our stack ensures that every interaction is pixel-perfect and every transaction is rock-solid.
-                        </Typography>
-                        <ul className="grid grid-cols-2 gap-4 text-sm font-medium text-slate-700">
-                            <li className="flex items-center gap-2"> <DeveloperMode fontSize="small" /> React & Tailwind CSS</li>
-                            <li className="flex items-center gap-2"> <DeveloperMode fontSize="small" /> Framer Motion</li>
-                            <li className="flex items-center gap-2"> <DeveloperMode fontSize="small" /> React Three Fiber</li>
-                            <li className="flex items-center gap-2"> <DeveloperMode fontSize="small" /> Spring Boot API</li>
-                        </ul>
-                    </Box>
-                    <Box className="flex-1 w-full aspect-video bg-slate-900 rounded-2xl p-4 shadow-2xl flex items-center justify-center">
-                        <Typography className="text-slate-500 italic">
-                            [ Insert Image of Code Snippet or Tech Architecture Diagram Here ]
-                        </Typography>
-                    </Box>
+        <Container ref={ref} className="h-screen p-0!" maxWidth="lg" >
+            <Stack height={"100%"} direction={"row"} gap={4} justifyContent={"center"} alignItems={"center"}>
+                <Stack flex={"50%"} flexGrow={0} flexShrink={0} justifyContent={"center"} alignItems={"flex-start"} gap={2}>
+                    <Typography variant="h3" className={`${theme === "light" ? 'text-blue-500' : 'text-zinc-100'}`}>{content?.section} Behind The Scene</Typography>
+                    <Typography variant="h4" className={`${theme === "light" ? 'text-zinc-700' : 'text-zinc-100'}`}>{content?.title}</Typography>
+                    <Typography className={`${theme === "light" ? 'text-zinc-500' : 'text-zinc-400'}`}>
+                        {content?.content}
+                    </Typography>
+                    <Grid width={"100%"} container spacing={2}>
+                        {techs.map((tech, index) => 
+                            <Grid key={index} size={4}>
+                                <Stack width={"100%"} direction={"row"} alignItems={"center"} gap={1}>
+                                    <DeveloperMode className={`${theme === "light" ? 'text-blue-500' : 'text-zinc-100'}`}/>
+                                    <Typography className={`text-xl! ${theme === "light" ? 'text-zinc-800' : 'text-zinc-100'}`}>{tech.label}</Typography>
+                                </Stack>
+                            </Grid>
+                        )}
+                    </Grid>
+                </Stack>
+                <Box className={`border-dashed! ${theme === "light" ? 'border-blue-500!' : ''} rounded-xl`} border={2} height={"80%"} flex={"40%"} flexGrow={0} flexShrink={0} alignContent={"center"}>
+                    <Canvas className="w-full! h-full! bg-white rounded-xl">
+                        <PhoneModelScene gridOn={false} axesOn={false} cameraOn={false}/>
+                    </Canvas>
                 </Box>
-            </Container>
-        </Box>
+            </Stack>
+        </Container>
     )
 }
 

@@ -3,16 +3,12 @@ import MissionSection from '../components/about/MissionSection';
 import TechSection from '../components/about/TechSection';
 import TeamSection from '../components/about/TeamSection';
 import MarketplaceSection from '../components/about/MarketplaceSection';
-import { use } from 'react';
 import { useQuery } from '@tanstack/react-query';
-
-interface Section {
-    id: number;
-    section: string;
-    title: string;
-    content: string;
-    image: string | null;
-}
+import { useRef, type RefObject } from 'react';
+import type { Section } from '../interfaces/Section';
+import Loading from './Loading';
+import Error from './Error';
+import { ErrorType } from '../enums/ErrorType';
 
 async function fetchSections(): Promise<Section[]> {
     const response = await fetch('http://localhost:8080/api/about/all', {
@@ -24,22 +20,35 @@ async function fetchSections(): Promise<Section[]> {
 }
 
 function About() {
-    const { data, isLoading, error } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ['aboutSections'],
         queryFn: fetchSections,
         refetchOnWindowFocus: false,
         refetchOnReconnect: false,
         retry: false
-    })
-    console.log(data);
-    
+    });
+
+    const missionRef = useRef<HTMLDivElement>(null!);
+    const techRef = useRef<HTMLDivElement>(null!);
+    const teamRef = useRef<HTMLDivElement>(null!);
+    const marketplaceRef = useRef<HTMLDivElement>(null!);
+
+    if (isLoading) return <Loading/>;
+    if (isError) return <Error code={ErrorType.BadRequest} message={error.message}/>
+
+    const sections: { label: string, ref: RefObject<HTMLDivElement> } [] = [];
+    sections.push({ label: "Our Mission", ref: missionRef });
+    sections.push({ label: "The Tech", ref: techRef });
+    sections.push({ label: "The Team", ref: teamRef });
+    sections.push({ label: "The Marketplace", ref: marketplaceRef });
+
     return (
         <>
-            <HeroSection/>
-            <MissionSection/>
-            <TechSection/>
-            <TeamSection/>
-            <MarketplaceSection/>
+            <HeroSection sections={sections} content={data?.find(section => section.section.includes("Hero"))}/>
+            <MissionSection ref={missionRef} content={data?.find(section => section.section.includes("Our Mission"))}/>
+            <TechSection ref={techRef} content={data?.find(section => section.section.includes("The Tech"))}/>
+            <TeamSection ref={teamRef} content={data?.find(section => section.section.includes("The Team"))}/>
+            <MarketplaceSection ref={marketplaceRef} content={data?.find(section => section.section.includes("The Marketplace"))}/>
         </>
     );
 };

@@ -8,7 +8,7 @@ type FooterMenuProps = {
 
 function FooterMenu({ header = "N/A", items = [] }: FooterMenuProps) {
     return (
-        <Box className="flex-2 justify-items-center">
+        <Box className="flex-2" justifyItems={"center"}>
             <List className="w-3/4">
                 <ListItem>
                     <ListItemText>{header}</ListItemText>

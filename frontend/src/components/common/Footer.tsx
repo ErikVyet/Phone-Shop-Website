@@ -32,10 +32,10 @@ function Footer() {
     }
     return (
         <footer className="w-full h-80 bg-black">
-            <Stack direction={"row"} className="w-full h-full text-zinc-100">
+            <Stack direction={"row"} className="text-zinc-100" width={"100%"} height={"100%"}>
                 <Box className="flex-3" alignContent={"center"} justifyItems={"center"}>
                     <img className="invert-100! size-1/2 object-contain justify-self-center" src="/src/assets/images/banner.png" draggable={false} />
-                    <Typography className="text-sm! w-10/12">Your trusted destination for the latest smartphones, unbeatable deals, and expert insights.</Typography>
+                    <Typography className="text-sm! w-5/6">Your trusted destination for the latest smartphones, unbeatable deals, and expert insights.</Typography>
                 </Box>
                 <FooterMenu header={linksFooterMenu.header} items={linksFooterMenu.items} />
                 <FooterMenu header={socialsFooterMenu.header} items={socialsFooterMenu.items} />

@@ -1,7 +1,7 @@
 import { Search } from "@mui/icons-material";
 import { IconButton, Input, Stack, Tooltip } from "@mui/material";
 import { useContext } from "react";
-import { ThemeContext } from "../../main";
+import { ThemeContext } from "../../context/ThemeContext";
 
 function Searchbar() {
     const context = useContext(ThemeContext);

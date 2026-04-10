@@ -1,24 +1,35 @@
-import { Box, Button, Container, Typography } from "@mui/material";
+import { Button, Container, Stack, Typography } from "@mui/material";
+import { useContext } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
+import type { Section } from "../../interfaces/Section";
 
-function MarketplaceSection() {
+type MarketplaceSectionProps = {
+    content?: Section,
+    ref?: React.Ref<HTMLDivElement>;
+}
+
+function MarketplaceSection({ ref, content }: MarketplaceSectionProps) {
+    const context = useContext(ThemeContext);
+    if (!context) return null;
+    const { theme } = context;
+
     return (
-        <Box className="py-24 bg-blue-600 text-white text-center">
-            <Container maxWidth="sm">
-                <Typography variant="h3" className="font-bold mb-6">Your next upgrade is waiting.</Typography>
-                <Typography className="text-blue-100 mb-10 text-lg">
-                    Join hundreds of users who are already trading smarter.
-                    Clear out your drawer or find your next favorite device today.
+        <Container ref={ref} className="h-screen" maxWidth="md">
+            <Stack width={"100%"} height={"100%"} justifyContent={"center"} alignItems={"center"} gap={2} textAlign={"center"}>
+                <Typography className={`${theme === "light" ? 'text-zinc-800' : 'text-zinc-100'}`} variant="h3" width={"100%"}>{content?.title}</Typography>
+                <Typography className={`${theme === "light" ? 'text-zinc-500' : 'text-zinc-400'}`} width={"70%"}>
+                    {content?.content}
                 </Typography>
-                <Box className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button variant="contained" className="bg-white text-blue-600 hover:bg-slate-100 px-10 py-4 rounded-xl font-bold normal-case">
+                <Stack direction={"row"} gap={2} justifyContent={"center"}>
+                    <Button variant="contained" className={`${theme === "light" ? 'bg-linear-to-r from-blue-500 to to-blue-400 text-zinc-100!' : 'bg-white! text-zinc-800!'}`}>
                         Start Selling
                     </Button>
-                    <Button variant="outlined" className="border-white text-white hover:bg-blue-700 px-10 py-4 rounded-xl font-bold normal-case">
+                    <Button href="/product" variant="outlined" className={`${theme === "light" ? 'border-blue-500 text-blue-500! bg-white!' : 'border-zinc-100! text-zinc-100! bg-zinc-950!'} hover:opacity-90! duration-200! transition-all!`} draggable={false}>
                         Browse Marketplace
                     </Button>
-                </Box>
-            </Container>
-        </Box>
+                </Stack>
+            </Stack>
+        </Container>
     );
 }
 
