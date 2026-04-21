@@ -1,5 +1,5 @@
 
-function ProductListDisplay() {
+function ProductListDisplay({ items }: { items: number[] }) {
     return (
         <>
             

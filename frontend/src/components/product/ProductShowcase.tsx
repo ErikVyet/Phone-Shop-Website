@@ -9,13 +9,13 @@ function ProductShowcase() {
     if (!filterContext) return null;
     const { display } = filterContext;
 
-    const items = [1, 2, 3, 4, 5];
+    const items = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
     return (
         <>
             {display === "flex" && <ProductFlexDisplay items={items}/>}
-            {display === "grid" && <ProductGridDisplay/>}
-            {display === "list" && <ProductListDisplay/>}
+            {display === "grid" && <ProductGridDisplay items={items}/>}
+            {display === "list" && <ProductListDisplay items={items}/>}
         </>
     );
 }

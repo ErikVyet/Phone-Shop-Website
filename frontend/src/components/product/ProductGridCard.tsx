@@ -1,16 +1,16 @@
-import { Card, CardActions, CardContent, CardMedia, Stack, Typography } from "@mui/material";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../../context/ThemeContext";
-import { motion } from "motion/react";
-import ProductCardButtonGroup from "./ProductCardButtonGroup";
 import { Favorite, FavoriteBorder, ShoppingCart, ShoppingCartOutlined, ViewInAr, ZoomOutMap } from "@mui/icons-material";
+import { motion } from "motion/react";
+import { Card, CardActions, CardContent, CardMedia, Stack, Typography } from "@mui/material";
+import ProductCardButtonGroup from "./ProductCardButtonGroup";
 
-function ProductFlexCard({ index }: { index: number }) {
+function ProductGridCard({ index }: { index: number }) {
     const themeContext = useContext(ThemeContext);
     if (!themeContext) return null;
     const { theme } = themeContext;
 
-    const delayDuration = (index % 3) / 10;
+    const delayDuration = (index % 4) / 10;
 
     const [isHover, setIsHover] = useState(false);
     const [isHoverFavorite, setIsHoverFavorite] = useState(false);
@@ -26,17 +26,17 @@ function ProductFlexCard({ index }: { index: number }) {
     ];
 
     return (
-        <Card className={`relative flex-[32%] h-120 mb-6 grow-0 shrink-0 shadow-lg! ${theme === "light" ? '' : 'shadow-zinc-400'}`} onPointerEnter={() => setIsHover(true)} onPointerLeave={() => setIsHover(false)} component={motion.div} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: delayDuration }}>
+        <Card className={`relative size-full shadow-lg! ${theme === "light" ? '' : 'shadow-zinc-400'}`} onPointerEnter={() => setIsHover(true)} onPointerLeave={() => setIsHover(false)} component={motion.div} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: delayDuration }}>
             <CardMedia className="w-full h-3/4 object-contain! bg-zinc-100 hover:cursor-pointer" component={"img"} src="/src/assets/images/hero_phone.png" />
             <CardContent className="w-full h-1/4 text-zinc-700" component={Stack} gap={1}>
                 <Typography className="text-sm!">Title</Typography>
                 <Typography className="text-sm!">Price</Typography>
             </CardContent>
             <CardActions className={`absolute w-fit top-3/5 p-0! place-content-center justify-self-center rounded-md`}>
-                <ProductCardButtonGroup isHover={isHover} padding={4} buttons={buttons}/>
+                <ProductCardButtonGroup isHover={isHover} padding={3} buttons={buttons}/>
             </CardActions>
         </Card>
     );
 }
 
-export default ProductFlexCard;
+export default ProductGridCard;
