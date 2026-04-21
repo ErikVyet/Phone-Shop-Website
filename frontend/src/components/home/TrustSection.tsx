@@ -21,7 +21,7 @@ function TrustSection() {
         <Box className="h-screen" width={"100%"} alignContent={"center"}>
             <Grid className="w-5/6 h-11/12" container rowSpacing={6} columnSpacing={10} justifySelf={"center"}>
                 {items.map((item, index) =>
-                    <Grid component={motion.div} key={index} size={4} className={`${theme === "light" ? 'p-1' : 'p-0'} ${index < items.length / 2 ? 'bg-linear-to-b' : 'bg-linear-to-t'} from-blue-500 to-blue-300 rounded-xl shadow-xl shadow-zinc-400`} initial={{ y: 10, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.5 }} viewport={{ once: true }}>
+                    <Grid component={motion.div} key={index} size={4} className={`${theme === "light" ? 'p-1' : 'p-0'} ${index < items.length / 2 ? 'bg-linear-to-b' : 'bg-linear-to-t'} from-blue-500 to-blue-300 rounded-xl shadow-lg shadow-zinc-400`} initial={{ y: 10, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 0.5 }} viewport={{ once: true }}>
                         <Box className="rounded-xl" width={"100%"} height={"100%"} bgcolor={"white"}>
                             <List>
                                 <ListItemIcon className="w-full place-content-center">
