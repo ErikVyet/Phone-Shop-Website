@@ -2,7 +2,7 @@ import { ArrowRightAlt } from "@mui/icons-material";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useContext, useRef } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 type PhoneCards = {
     items: {

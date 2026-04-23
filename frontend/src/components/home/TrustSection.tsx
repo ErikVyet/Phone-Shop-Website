@@ -2,7 +2,7 @@ import { LocalShipping, Paid, Reviews, Security, Store, SupportAgent } from "@mu
 import { Box, Grid, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import { motion } from "motion/react";
 import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 function TrustSection() {
     const context = useContext(ThemeContext);

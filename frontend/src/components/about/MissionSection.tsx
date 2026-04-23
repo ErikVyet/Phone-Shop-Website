@@ -2,7 +2,7 @@ import { Devices, Security, Speed } from "@mui/icons-material";
 import { Box, Card, CardContent, Container, Grid, Stack, Typography } from "@mui/material";
 import { motion } from "motion/react";
 import { useContext, type Ref } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 import type { Section } from "../../interfaces/Section";
 
 type MissionSectionProps = {

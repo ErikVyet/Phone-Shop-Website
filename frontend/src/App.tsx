@@ -6,7 +6,7 @@ import { useState } from "react";
 import MainLayout from "./layouts/MainLayout";
 import About from "./pages/About";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ThemeContext } from "./context/ThemeContext";
+import { ThemeContext } from "./contexts/ThemeContext";
 
 function App() {
     const [theme, setTheme] = useState<"light" | "dark">(() => {

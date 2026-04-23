@@ -1,8 +1,8 @@
 import { GridOn, GridView, Menu } from "@mui/icons-material";
 import { IconButton, Stack, Tooltip } from "@mui/material";
 import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
-import { FilterContext } from "../../context/FilterContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import { FilterContext } from "../../contexts/FilterContext";
 
 function DisplayButtonGroup() {
     const themeContext = useContext(ThemeContext);

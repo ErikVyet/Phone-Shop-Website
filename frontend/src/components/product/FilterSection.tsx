@@ -4,7 +4,7 @@ import SortComboBox from "./SortComboBox";
 import DisplayButtonGroup from "./DisplayButtonGroup";
 import FilterCollapseMenu from "./FilterCollapseMenu";
 import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 function FilterSection() {
     const themeContext = useContext(ThemeContext);

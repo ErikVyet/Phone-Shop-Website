@@ -1,7 +1,7 @@
 import { Checkbox, List, ListItem, ListItemText, Typography } from "@mui/material";
 import { motion } from "motion/react";
 import { useContext, type ChangeEvent } from "react";
-import { FilterContext } from "../../context/FilterContext";
+import { FilterContext } from "../../contexts/FilterContext";
 
 type FilterCriteria = {
     header?: string,

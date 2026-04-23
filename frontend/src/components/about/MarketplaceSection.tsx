@@ -1,6 +1,6 @@
 import { Button, Container, Stack, Typography } from "@mui/material";
 import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 import type { Section } from "../../interfaces/Section";
 
 type MarketplaceSectionProps = {

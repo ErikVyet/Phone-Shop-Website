@@ -1,6 +1,6 @@
 import { MenuItem, Select } from "@mui/material";
 import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 function SortComboBox() {
     const themeContext = useContext(ThemeContext);

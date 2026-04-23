@@ -2,7 +2,7 @@ import { SouthEast } from "@mui/icons-material";
 import { Box, Button, Container, Stack, Typography } from "@mui/material";
 import { motion } from "motion/react";
 import { useContext, type RefObject } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 import type { Section } from "../../interfaces/Section";
 
 type HeroSectionProps = {

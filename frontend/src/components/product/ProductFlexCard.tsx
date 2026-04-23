@@ -1,11 +1,17 @@
 import { Card, CardActions, CardContent, CardMedia, Stack, Typography } from "@mui/material";
 import { useContext, useState } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 import { motion } from "motion/react";
 import ProductCardButtonGroup from "./ProductCardButtonGroup";
 import { Favorite, FavoriteBorder, ShoppingCart, ShoppingCartOutlined, ViewInAr, ZoomOutMap } from "@mui/icons-material";
+import type { Phone } from "../../interfaces/Phone";
 
-function ProductFlexCard({ index }: { index: number }) {
+type ProductFlexCardProps = {
+    index: number,
+    phone: Phone
+}
+
+function ProductFlexCard({ index, phone }: ProductFlexCardProps) {
     const themeContext = useContext(ThemeContext);
     if (!themeContext) return null;
     const { theme } = themeContext;
@@ -27,10 +33,10 @@ function ProductFlexCard({ index }: { index: number }) {
 
     return (
         <Card className={`relative flex-[32%] h-120 mb-6 grow-0 shrink-0 shadow-lg! ${theme === "light" ? '' : 'shadow-zinc-400'}`} onPointerEnter={() => setIsHover(true)} onPointerLeave={() => setIsHover(false)} component={motion.div} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: delayDuration }}>
-            <CardMedia className="w-full h-3/4 object-contain! bg-zinc-100 hover:cursor-pointer" component={"img"} src="/src/assets/images/hero_phone.png" />
-            <CardContent className="w-full h-1/4 text-zinc-700" component={Stack} gap={1}>
-                <Typography className="text-sm!">Title</Typography>
-                <Typography className="text-sm!">Price</Typography>
+            <CardMedia className="w-full h-3/4 object-contain! place-content-center bg-zinc-100 hover:cursor-pointer" component={"img"} src={phone.image}/>
+            <CardContent className="w-full h-1/4" component={Stack} gap={1}>
+                <Typography className="text-sm! text-zinc-700">{phone.name}</Typography>
+                <Typography className="text-sm! text-zinc-500">{phone.price} VND</Typography>
             </CardContent>
             <CardActions className={`absolute w-fit top-3/5 p-0! place-content-center justify-self-center rounded-md`}>
                 <ProductCardButtonGroup isHover={isHover} padding={4} buttons={buttons}/>

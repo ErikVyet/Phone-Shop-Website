@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { Close, FilterAlt } from "@mui/icons-material";
-import { FilterContext } from "../../context/FilterContext";
+import { FilterContext } from "../../contexts/FilterContext";
 
 function FilterButton() {
     const themeContext = useContext(ThemeContext);

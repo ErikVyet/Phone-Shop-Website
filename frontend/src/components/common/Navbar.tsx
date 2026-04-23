@@ -2,7 +2,7 @@ import { AppBar, Box, Button, IconButton, Menu, MenuItem, Stack, Toolbar, Toolti
 import { Person, Edit, Logout, ShoppingBasket, LightMode, DarkMode } from "@mui/icons-material";
 import { useContext, useState } from "react";
 import Searchbar from "./Searchbar";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 function Navbar() {
     const context = useContext(ThemeContext);

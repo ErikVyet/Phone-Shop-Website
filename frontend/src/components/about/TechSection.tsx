@@ -1,7 +1,7 @@
 import { DeveloperMode } from "@mui/icons-material";
 import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 import type { Section } from "../../interfaces/Section";
 import { Canvas } from "@react-three/fiber";
 import PhoneModelScene from "../common/PhoneModelScene";

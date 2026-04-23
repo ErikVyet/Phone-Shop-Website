@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { motion } from "motion/react";
 import ExplodePhoneScene from "../common/ExplodePhoneScene";
 import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 function InteractionSection() {
     const context = useContext(ThemeContext);

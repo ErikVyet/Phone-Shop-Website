@@ -1,9 +1,9 @@
 import { Collapse, Stack } from "@mui/material";
 import { useContext } from "react";
-import { FilterContext } from "../../context/FilterContext";
+import { FilterContext } from "../../contexts/FilterContext";
 import FilterCriteriaList from "./FilterCriteriaList";
 import PriceFilter from "./PriceFilter";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 function FilterCollapseMenu() {
     const themeContext = useContext(ThemeContext);

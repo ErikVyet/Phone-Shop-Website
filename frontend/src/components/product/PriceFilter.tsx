@@ -1,7 +1,7 @@
 import { List, ListItem, ListItemText, Slider, Stack, Typography } from "@mui/material";
 import { motion } from "motion/react";
 import { useContext, useState } from "react";
-import { FilterContext } from "../../context/FilterContext";
+import { FilterContext } from "../../contexts/FilterContext";
 
 function PriceFilter() {
     const filterContext = useContext(FilterContext);

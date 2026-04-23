@@ -5,7 +5,7 @@ import { Canvas } from "@react-three/fiber";
 import InfiniteGalaxyScreen from "../components/common/InfiniteGalaxyScreen";
 import SpiralGalaxyScene from "../components/common/SpiralGalaxyScene";
 import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 function MainLayout() {
     const context = useContext(ThemeContext);

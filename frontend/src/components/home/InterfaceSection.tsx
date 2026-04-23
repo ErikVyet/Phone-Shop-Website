@@ -6,7 +6,7 @@ import { ArrowRightAltOutlined } from "@mui/icons-material";
 import type { HorizontalIconListProps } from "./HorizontalIconList";
 import HorizontalIconList from "./HorizontalIconList";
 import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 function InterfaceSection() {
     const context = useContext(ThemeContext);

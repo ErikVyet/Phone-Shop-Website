@@ -2,7 +2,7 @@ import { ArrowRightAltOutlined } from "@mui/icons-material";
 import { Box, Button, Typography } from "@mui/material";
 import { motion } from "motion/react";
 import { useContext } from "react";
-import { ThemeContext } from "../../context/ThemeContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 function SloganSection() {
     const context = useContext(ThemeContext);
