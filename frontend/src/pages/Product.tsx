@@ -13,7 +13,7 @@ function Product() {
     const [screens, setScreens] = useState<string[]>([]);
     const [rams, setRams] = useState<string[]>([]);
     const [storages, setStorages] = useState<string[]>([]);
-    const [prices, setPrices] = useState<number[] | null>(null);
+    const [prices, setPrices] = useState<number[]>([0, 30000000]);
 
     return (
         <FilterContext.Provider value={{ isOpen, setIsOpen, count, setCount, display, setDisplay, brand, setBrand, screens, setScreens, rams, setRams, storages, setStorages, prices, setPrices }}>

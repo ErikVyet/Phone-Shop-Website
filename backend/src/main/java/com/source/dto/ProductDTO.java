@@ -8,10 +8,10 @@ public class ProductDTO implements Serializable {
     private int id;
     private String name;
     private String brand;
-    private String price;
+    private double price;
     private String  image;
     private String description;
-    private String screen;
+    private double screen;
     private String ram;
     private String storage;
     public int getId() {
@@ -32,10 +32,10 @@ public class ProductDTO implements Serializable {
     public void setBrand(String brand) {
         this.brand = brand;
     }
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
     public String getImage() {
@@ -50,10 +50,10 @@ public class ProductDTO implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    public String getScreen() {
+    public double getScreen() {
         return screen;
     }
-    public void setScreen(String screen) {
+    public void setScreen(double screen) {
         this.screen = screen;
     }
     public String getRam() {

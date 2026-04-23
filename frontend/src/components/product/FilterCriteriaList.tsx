@@ -1,24 +1,30 @@
 import { Checkbox, List, ListItem, ListItemText, Typography } from "@mui/material";
 import { motion } from "motion/react";
-import { useContext, type ChangeEvent } from "react";
+import { useContext, type ChangeEvent, type Dispatch, type SetStateAction } from "react";
 import { FilterContext } from "../../contexts/FilterContext";
 
 type FilterCriteria = {
     header?: string,
-    criteria?: {
-        label: string,
-        action: void | null
-    }[]
+    criteria?: { label: string }[],
+    activeCriteria: string[],
+    setActiveCriteria: Dispatch<SetStateAction<string[]>>
 }
 
-function FilterCriteriaList({ header = "N/A", criteria = [] }: FilterCriteria) {
+function FilterCriteriaList({ header = "N/A", criteria = [], activeCriteria, setActiveCriteria }: FilterCriteria) {
     const filterContext = useContext(FilterContext);
     if (!filterContext) return null;
     const { isOpen, count, setCount } = filterContext;
 
     const handleCheckBoxChange = (_event: ChangeEvent, checked: boolean) => {
-        if (checked) setCount(count + 1);
-        else setCount(count - 1);
+        if (checked) {
+            setActiveCriteria([...activeCriteria, _event.currentTarget.id.replaceAll(" ", "")]);
+            setCount(count + 1);
+        }
+        else {
+            setActiveCriteria(activeCriteria.filter(criterion => criterion !== _event.currentTarget.id.replaceAll(" ", "")));
+            setCount(count - 1);
+        }
+        console.log(activeCriteria);
     };
 
     return (

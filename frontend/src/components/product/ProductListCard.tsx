@@ -28,6 +28,11 @@ function ProductListCard({ phone }: ProductListCardProps) {
         { title: "3D view", initialIcon: <ViewInAr component={motion.svg} initial={{ scale: 0.9 }} animate={{ scale: 1 }} />, activeIcon: <ViewInAr component={motion.svg} initial={{ scale: 1 }} animate={{ scale: 0.9 }} />, isHover: isHover3DView, setIsHover: setIsHover3DView },
     ];
 
+    const currencyFormatter = new Intl.NumberFormat(
+        'vi-VN',
+        { style: "currency", currency: "VND" }
+    );
+
     return (
         <Card className={`size-full shadow-lg! ${theme === "light" ? '' : 'shadow-zinc-400'}`} onPointerEnter={() => setIsHover(true)} onPointerLeave={() => setIsHover(false)} component={motion.div} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.1 }}>
             <Stack width={"100%"} height={"100%"} direction={"row"}>
@@ -39,7 +44,7 @@ function ProductListCard({ phone }: ProductListCardProps) {
                 </Box>
                 <CardContent className="w-full h-1/4" component={Stack} flex={"70%"} flexGrow={0} flexShrink={0} gap={1}>
                     <Typography className="text-zinc-700">{phone.name}</Typography>
-                    <Typography className="text-zinc-500">{phone.price} VND</Typography>
+                    <Typography className="text-zinc-500">{currencyFormatter.format(phone.price)}</Typography>
                     <Typography className="text-zinc-500">{phone.description}</Typography>
                 </CardContent>
             </Stack>

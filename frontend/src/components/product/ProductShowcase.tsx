@@ -61,7 +61,7 @@ function ProductShowcase() {
         queryKey: ['product', { brand, screens, rams, storages, prices }],
         queryFn: ({ pageParam = 0 }) => fetchPhones({ brand: brand, screens: screens, rams: rams, storages: storages, prices: prices, page: pageParam }),
         initialPageParam: 0,
-        getNextPageParam: ({ last, number }) => last ? undefined : number + 1,
+        getNextPageParam: ({ last, number }) => last ? undefined : number + 1
     });
 
     useEffect(() => {
@@ -73,8 +73,7 @@ function ProductShowcase() {
     if (isLoading) return <Loading/>
     if (isError) return <Error code={ErrorType.BadRequest} message={error.message}/>
     if (data === undefined) return <Error code={ErrorType.BadRequest} message={"Invalid data"}/>
-
-    console.log(data);
+    
     const products: Phone[] = data.pages.flatMap(page => page.content) ?? [];
 
     return (
@@ -83,12 +82,11 @@ function ProductShowcase() {
             {display === "grid" && <ProductGridDisplay items={products}/>}
             {display === "list" && <ProductListDisplay items={products}/>}
             {isFetchingNextPage && <Loading/>}
-            {!hasNextPage && (
-                <Box textAlign={"center"} mt={2}>
+            <Box ref={ref} textAlign={"center"} mb={2}>
+                {!hasNextPage && (
                     <Typography className={`${theme === "light" ? 'text-zinc-500' : 'text-zinc-100'}`}>No more products to show.</Typography>
-                </Box>
-            )}
-            <Box ref={ref}></Box>
+                )}
+            </Box>
         </>
     );
 }

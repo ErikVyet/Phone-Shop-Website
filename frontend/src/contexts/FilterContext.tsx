@@ -15,6 +15,6 @@ export const FilterContext = createContext<{
     setRams: Dispatch<SetStateAction<string[]>>,
     storages: string[],
     setStorages: Dispatch<SetStateAction<string[]>>,
-    prices: number[] | null,
-    setPrices: Dispatch<SetStateAction<number[] | null>>,
+    prices: number[],
+    setPrices: Dispatch<SetStateAction<number[]>>,
 } | null>(null);

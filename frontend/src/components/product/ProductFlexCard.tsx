@@ -31,12 +31,17 @@ function ProductFlexCard({ index, phone }: ProductFlexCardProps) {
         { title: "3D view", initialIcon: <ViewInAr component={motion.svg} initial={{ scale: 0.9 }} animate={{ scale: 1 }} />, activeIcon: <ViewInAr component={motion.svg} initial={{ scale: 1 }} animate={{ scale: 0.9 }} />, isHover: isHover3DView, setIsHover: setIsHover3DView },
     ];
 
+    const currencyFormatter = new Intl.NumberFormat(
+        'vi-VN',
+        { style: "currency", currency: "VND" }
+    )
+
     return (
         <Card className={`relative flex-[32%] h-120 mb-6 grow-0 shrink-0 shadow-lg! ${theme === "light" ? '' : 'shadow-zinc-400'}`} onPointerEnter={() => setIsHover(true)} onPointerLeave={() => setIsHover(false)} component={motion.div} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: delayDuration }}>
             <CardMedia className="w-full h-3/4 object-contain! place-content-center bg-zinc-100 hover:cursor-pointer" component={"img"} src={phone.image}/>
             <CardContent className="w-full h-1/4" component={Stack} gap={1}>
                 <Typography className="text-sm! text-zinc-700">{phone.name}</Typography>
-                <Typography className="text-sm! text-zinc-500">{phone.price} VND</Typography>
+                <Typography className="text-sm! text-zinc-500">{currencyFormatter.format(phone.price)}</Typography>
             </CardContent>
             <CardActions className={`absolute w-fit top-3/5 p-0! place-content-center justify-self-center rounded-md`}>
                 <ProductCardButtonGroup isHover={isHover} padding={4} buttons={buttons}/>
