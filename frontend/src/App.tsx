@@ -1,12 +1,15 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Playground from "./pages/Playground";
-import Product from "./pages/Product";
+import Shop from "./pages/Shop";
 import { useState } from "react";
 import MainLayout from "./layouts/MainLayout";
 import About from "./pages/About";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeContext } from "./contexts/ThemeContext";
+import Error from "./pages/Error";
+import { ErrorType } from "./enums/ErrorType";
+import Product from "./pages/Product";
 
 function App() {
     const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -20,9 +23,11 @@ function App() {
                     <Route element={<MainLayout />}>
                         <Route path="/" element={<Home />} />
                         <Route path="/playground" element={<Playground />} />
-                        <Route path="/product" element={<Product />} />
+                        <Route path="/shop" element={<Shop />} />
+                        <Route path="/product/:id" element={<Product />}/>
                         <Route path="/about" element={<About />} />
                     </Route>
+                    <Route path="*" element={<Error code={ErrorType.NotFound} message={"Page not found"}/>} />
                 </Routes>
             </QueryClientProvider>
         </ThemeContext.Provider>

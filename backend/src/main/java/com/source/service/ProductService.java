@@ -61,6 +61,12 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
+    public ProductDTO getById(int id) {
+        Optional<Product> productOpt = productRepository.findById(id);
+        return productOpt.map(ProductDTO::fromEntity).orElse(null);
+    }
+
+    @Transactional(readOnly = true)
     public double[] getPriceRange() {
         Optional<Product> minPriceProductOpt = productRepository.findFirstByOrderByPriceAsc();
         Optional<Product> maxPriceProductOpt = productRepository.findFirstByOrderByPriceDesc();

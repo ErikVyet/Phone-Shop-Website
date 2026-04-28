@@ -28,7 +28,7 @@ function Navbar() {
                 <img src="/src/assets/images/banner.png" className="object-contain flex-auto!" draggable={false}/>
                 <Toolbar className={`flex-5! h-full! justify-evenly ${theme === "light" ? 'text-zinc-100' : 'text-zinc-500'}`}>
                     <Button color="inherit" href="/" draggable={false}>Home</Button>
-                    <Button color="inherit" href="/product" draggable={false}>Product</Button>
+                    <Button color="inherit" href="/shop" draggable={false}>Shop</Button>
                     <Button color="inherit" href="/community" draggable={false}>Community</Button>
                     <Button color="inherit" href="/about" draggable={false}>About</Button>
                     <Button color="inherit" href="/guide" draggable={false}>Guide</Button>

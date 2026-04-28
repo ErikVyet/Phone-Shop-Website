@@ -24,7 +24,7 @@ function MarketplaceSection({ ref, content }: MarketplaceSectionProps) {
                     <Button variant="contained" className={`${theme === "light" ? 'bg-linear-to-r from-blue-500 to to-blue-400 text-zinc-100!' : 'bg-white! text-zinc-800!'}`}>
                         Start Selling
                     </Button>
-                    <Button href="/product" variant="outlined" className={`${theme === "light" ? 'border-blue-500 text-blue-500! bg-white!' : 'border-zinc-100! text-zinc-100! bg-zinc-950!'} hover:opacity-90! duration-200! transition-all!`} draggable={false}>
+                    <Button href="/shop" variant="outlined" className={`${theme === "light" ? 'border-blue-500 text-blue-500! bg-white!' : 'border-zinc-100! text-zinc-100! bg-zinc-950!'} hover:opacity-90! duration-200! transition-all!`} draggable={false}>
                         Browse Marketplace
                     </Button>
                 </Stack>

@@ -8,7 +8,7 @@ function Footer() {
         items: [
             { path: "/", text: "Home" },
             { path: "/playground", text: "Playground" },
-            { path: "/product", text: "Product" },
+            { path: "/shop", text: "Shop" },
             { path: "/community", text: "Community" },
             { path: "/about", text: "About" },
             { path: "/guide", text: "Guide" }
