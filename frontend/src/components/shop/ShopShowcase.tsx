@@ -32,7 +32,7 @@ type ResponseProps = {
 }
 
 async function fetchPhones({ brand, screens, rams, storages, prices, page }: FetchProps): Promise<ResponseProps> {
-    const response = await fetch("http://localhost:8080/api/product/all", {
+    const response = await fetch("http://localhost:8080/api/product/filtered", {
         method: "POST",
         headers: { "Content-Type" : "application/json" },
         body: JSON.stringify({

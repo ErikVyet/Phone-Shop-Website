@@ -1,5 +1,7 @@
 package com.source.controller;
 
+import java.util.List;
+
 import org.springframework.data.domain.Slice;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,8 +27,19 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @PostMapping("/all")
-    public ResponseEntity<Slice<ProductDTO>> getAllProduct(@RequestBody ProductFilterRequest request) {
+    @GetMapping("/all")
+    public ResponseEntity<List<ProductDTO>> getAll() {
+        try {
+            return ResponseEntity.ok(productService.getAll());
+        }
+        catch(Exception exception) {
+            System.out.println(exception.getMessage());
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @PostMapping("/filtered")
+    public ResponseEntity<Slice<ProductDTO>> getFilteredProduct(@RequestBody ProductFilterRequest request) {
         try {
             return ResponseEntity.ok(productService.getAll(request.getBrand(), request.getScreens(), request.getRams(), request.getStorages(), request.getPrices(), request.getPage()));
         }

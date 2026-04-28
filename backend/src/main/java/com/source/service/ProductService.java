@@ -22,6 +22,12 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
+    public List<ProductDTO> getAll() {
+        List<Product> products = productRepository.findAll();
+        return products.stream().map(ProductDTO::fromEntity).toList();
+    }
+
+    @Transactional(readOnly = true)
     public Slice<ProductDTO> getAll(String brand, List<String> screens, List<String> rams, List<String> storages, double prices[], int page) {
         Specification<Product> spec = Specification.unrestricted();
         if (brand != null && !brand.isEmpty()) {

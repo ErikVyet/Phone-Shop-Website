@@ -6,6 +6,7 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 
 type PhoneCards = {
     items: {
+        id: number,
         brand: string,
         name: string,
         image: string
@@ -42,9 +43,8 @@ function HorizontalCardList({ items = [] }: PhoneCards) {
                                 <Typography className="text-2xl! font-semibold!" justifySelf={"center"}>{item.brand}</Typography>
                                 <img className="size-2/3 w-full object-contain justify-self-center" src={item.image} draggable={false} />
                                 <Typography fontStyle={"italic"} justifySelf={"center"}>{item.name}</Typography>
-                                <Button className={`w-fit ${theme === "light" ? 'bg-linear-to-r from-blue-500 to-blue-300' : 'bg-blue-500!'} text-zinc-100! normal-case! rounded-md!`}>
+                                <Button className={`w-fit ${theme === "light" ? 'bg-linear-to-r from-blue-500 to-blue-300' : 'bg-blue-500!'} text-zinc-100! normal-case! rounded-md!`} endIcon={<ArrowRightAlt />} href={`/product/${item.id}`}>
                                     <Typography className="text-sm!">See more</Typography>
-                                    <ArrowRightAlt />
                                 </Button>
                             </Stack>
                         </Box>
