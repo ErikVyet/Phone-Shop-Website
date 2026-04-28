@@ -23,11 +23,12 @@ function Searchbar() {
     const [anchorEl, setAnchorEl] = useState<null | HTMLInputElement>(null);
     const [searchInput, setSearchInput] = useState("");
 
-    const { data, isError, error } = useQuery({
+    const { data, isLoading, isError, error } = useQuery({
         queryKey: ["searches"],
         queryFn: fetchAll
     })
 
+    if (isLoading) return null;
     if (!data || isError) return <Error code={ErrorType.InternalServerError} message={error ? error.message : "Failed to fetch data."}/>
 
     const handleInputChange = (_event: ChangeEvent<HTMLInputElement>) => {
