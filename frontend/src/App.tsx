@@ -10,6 +10,7 @@ import { ThemeContext } from "./contexts/ThemeContext";
 import Error from "./pages/Error";
 import { ErrorType } from "./enums/ErrorType";
 import Product from "./pages/Product";
+import Community from "./pages/Community";
 
 function App() {
     const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -24,6 +25,7 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/playground" element={<Playground />} />
                         <Route path="/shop" element={<Shop />} />
+                        <Route path="/community" element={<Community/>}/>
                         <Route path="/product/:id" element={<Product />}/>
                         <Route path="/about" element={<About />} />
                     </Route>
