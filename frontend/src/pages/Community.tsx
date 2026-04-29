@@ -3,6 +3,7 @@ import { Container, Stack, Typography, Button, Divider } from '@mui/material';
 import { Email } from '@mui/icons-material';
 import { useQuery } from '@tanstack/react-query';
 import { ThemeContext } from '../contexts/ThemeContext';
+import { motion } from 'framer-motion'; 
 import Loading from './Loading';
 import Error from './Error';
 import { ErrorType } from '../enums/ErrorType';
@@ -14,25 +15,39 @@ import FaqItem from '../components/community/FaqItem';
 const fetchCommunityData = async () => {
   return {
     reviews: [
-      { id: 1, author: "Mai Lĩnh", content: "Camera iPhone 15 Pro Max chụp đêm quá đỉnh!", model: "iPhone 15 Pro Max", likes: 124 },
-      { id: 2, author: "Quốc Việt", content: "S24 Ultra dùng S-Pen vẽ vời rất mượt.", model: "S24 Ultra", likes: 87 },
-      { id: 3, author: "Đồng Khánh", content: "Sạc 120W trên Xiaomi 16 Pro đúng là cứu cánh.", model: "Xiaomi 16 Pro", likes: 203 },
-      { id: 4, author: "Minh Tâm", content: "Trải nghiệm Android thuần trên Pixel cực kỳ mượt.", model: "Google Pixel 8 Pro", likes: 56 },
-      { id: 5, author: "Thu Thảo", content: "Màu Pink trên iPhone 15 thực sự rất xinh.", model: "iPhone 15 Plus", likes: 112 }
+      { id: 1, author: "Mai Linh", content: "The iPhone 15 Pro Max night mode is absolutely stunning!", model: "iPhone 15 Pro Max", likes: 124 },
+      { id: 2, author: "Quoc Viet", content: "S24 Ultra S-Pen experience is incredibly smooth for drawing.", model: "S24 Ultra", likes: 87 },
+      { id: 3, author: "Dong Khanh", content: "The 120W charging on Xiaomi 16 Pro is a real life-saver.", model: "Xiaomi 16 Pro", likes: 203 },
+      { id: 4, author: "Minh Tam", content: "The pure Android experience on Pixel is butter smooth.", model: "Google Pixel 8 Pro", likes: 56 },
+      { id: 5, author: "Thu Thao", content: "The Pink color on iPhone 15 is actually very pretty.", model: "iPhone 15 Plus", likes: 112 }
     ],
     faqs: [
-      { id: 1, question: "Làm sao để kết nối điện thoại với máy tính?", answer: "Dùng cáp Type-C hoặc ứng dụng Link to Windows/AirDrop." },
-      { id: 2, question: "Chế độ bảo hành khi mua online?", answer: "Bảo hành chính hãng 12 tháng tại các trung tâm uỷ quyền." },
-      { id: 3, question: "Có hỗ trợ thu cũ đổi mới không?", answer: "Có, hỗ trợ thu cũ và trợ giá thêm lên tới 2 triệu đồng." }
+      { id: 1, question: "How to connect the phone to a computer?", answer: "Use a Type-C cable or Link to Windows/AirDrop apps." },
+      { id: 2, question: "What is the warranty for online purchases?", answer: "12-month official warranty at authorized service centers." },
+      { id: 3, question: "Is there a trade-in program available?", answer: "Yes, we support trade-ins with additional subsidies up to $100." }
     ]
   };
+};
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.5 }
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
 };
 
 function Community() {
   const themeContext = useContext(ThemeContext);
   const isDark = themeContext?.theme === 'dark';
   const textColor = isDark ? "#ffffff" : "#1a1a1a";
-  const subColor = isDark ? "#cbd5e1" : "#475569";
+  const boxContentColor = isDark ? "#64748b" : "#475569";
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ['communityData'],
@@ -40,48 +55,82 @@ function Community() {
   });
 
   if (isLoading) return <Loading />;
-  if (isError) return <Error code={ErrorType.BadRequest} message="Lỗi tải dữ liệu" />;
+  if (isError) return <Error code={ErrorType.BadRequest} message="Error loading data" />;
 
   return (
     <Container maxWidth="xl" sx={{ py: 10 }}>
-      
       <CommunityHeader 
         isDark={isDark}
         textColor={textColor}
-        subColor={subColor}
+        subColor={boxContentColor}
       />
+      <motion.div initial="initial" animate="animate" variants={staggerContainer}>
+        <motion.div variants={fadeInUp}>
+          <Typography 
+            variant="h5" 
+            fontWeight="bold" 
+            mb={3} 
+            sx={{ color: textColor }} 
+          >
+            User Experiences
+          </Typography>
+        </motion.div>
+        
+        <Stack spacing={3} mb={8}>
+          {data?.reviews.map((rev) => (
+            <motion.div key={rev.id} variants={fadeInUp}>
+              <ReviewItem rev={rev} isDark={isDark} />
+            </motion.div>
+          ))}
+        </Stack>
+      </motion.div>
 
-      <Typography variant="h5" fontWeight="bold" mb={3} color={textColor}>
-        Trải nghiệm người dùng
-      </Typography>
-      
-      <Stack spacing={3} mb={8}>
-        {data?.reviews.map((rev) => (
-          <ReviewItem key={rev.id} rev={rev} isDark={isDark} />
-        ))}
-      </Stack>
+      <Divider sx={{ my: 6, borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)" }} />
+      <motion.div initial="initial" whileInView="animate" viewport={{ once: true }} variants={staggerContainer}>
+        <motion.div variants={fadeInUp}>
+          <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center" mb={4} gap={2}>
+            <Typography 
+              variant="h5" 
+              fontWeight="bold" 
+              sx={{ color: textColor }}
+            >
+              Q&A & Support
+            </Typography>
+            
+            <Button 
+              variant="contained" 
+              startIcon={<Email />} 
+              href="mailto:support@vphone.com"
+              sx={{ 
+                borderRadius: 2,
+                textTransform: 'none',
+                fontWeight: 'bold',
+                px: 3,
+                py: 1,
+                backgroundColor: isDark ? "#ffffff" : "#1976d2", 
+                color: isDark ? "#475569" : "#ffffff",
+                boxShadow: isDark ? 'none' : '0 4px 12px rgba(25, 118, 210, 0.2)',
+                '&:hover': {
+                  backgroundColor: isDark ? "#e2e8f0" : "#1565c0", 
+                },
+                '& .MuiButton-startIcon': {
+                  color: isDark ? "#475569" : "#ffffff"
+                }
+              }}
+            >
+              Send questions via Email
+            </Button>
+          </Stack>
+        </motion.div>
 
-      <Divider sx={{ my: 6 }} />
-
-      <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center" mb={4} gap={2}>
-        <Typography variant="h5" fontWeight="bold" color={textColor}>
-          Q&A & Support
-        </Typography>
-        <Button 
-          variant="contained" 
-          startIcon={<Email />} 
-          href="mailto:support@vphone.com"
-          sx={{ borderRadius: 2 }}
-        >
-          Send questions via Email
-        </Button>
-      </Stack>
-
-      <Stack spacing={2}>
-        {data?.faqs.map((faq) => (
-          <FaqItem key={faq.id} faq={faq} isDark={isDark} />
-        ))}
-      </Stack>
+        <Stack spacing={2}>
+          {data?.faqs.map((faq) => (
+            <motion.div key={faq.id} variants={fadeInUp}>
+              <FaqItem faq={faq} isDark={isDark} />
+            </motion.div>
+          ))}
+        </Stack>
+      </motion.div>
     </Container>
   );
 }
