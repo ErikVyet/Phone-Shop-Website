@@ -75,7 +75,7 @@ function Community() {
             User Experiences
           </Typography>
         </motion.div>
-        
+      
         <Stack spacing={3} mb={8}>
           {data?.reviews.map((rev) => (
             <motion.div key={rev.id} variants={fadeInUp}>
@@ -84,7 +84,6 @@ function Community() {
           ))}
         </Stack>
       </motion.div>
-
       <Divider sx={{ my: 6, borderColor: isDark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.08)" }} />
       <motion.div initial="initial" whileInView="animate" viewport={{ once: true }} variants={staggerContainer}>
         <motion.div variants={fadeInUp}>

@@ -11,6 +11,10 @@ import Error from "./pages/Error";
 import { ErrorType } from "./enums/ErrorType";
 import Product from "./pages/Product";
 import Community from "./pages/Community";
+import Guide from "./pages/Guide";
+
+
+
 
 function App() {
     const [theme, setTheme] = useState<"light" | "dark">(() => {
@@ -28,6 +32,8 @@ function App() {
                         <Route path="/community" element={<Community/>}/>
                         <Route path="/product/:id" element={<Product />}/>
                         <Route path="/about" element={<About />} />
+                        <Route path="/guide" element={<Guide />} />
+                    
                     </Route>
                     <Route path="*" element={<Error code={ErrorType.NotFound} message={"Page not found"}/>} />
                 </Routes>
